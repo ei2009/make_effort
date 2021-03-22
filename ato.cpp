@@ -598,11 +598,11 @@ struct vigor{
         return;
     }
     void clean_heal(int i){ //クリーンヒール
-        cout<<player_name[i]<<"は自分を浄化した！"<<endl<<endl;
+        cout<<player_name[i]<<"は自身を浄化した！"<<endl<<endl;
         sleep(1);
         int damage=shake_number(clean_heal_power);
         if(player_hp[i]+damage>=default_hp){
-            damage=default_hp-damage;
+            damage=default_hp-player_hp[i];
         }
         cout<<player_name[i]<<"は"<<damage<<"回復した！"<<endl<<endl;
         sleep(1);
