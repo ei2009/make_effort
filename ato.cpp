@@ -419,11 +419,11 @@ struct vigor{
         cout<<player_name[i]<<"は関節痛になった！"<<endl<<endl;
         sleep(1);
         player_form[i]|=(1<<joint_number);
-        number_of_use_skills[i]=3;
+        number_of_use_skills[i]--;
         return;
     }
     void joint_ing(int i){ //関節痛の進行
-        cout<<player_name[i]<<"は膝が痛くて技が3種類しか出せない！"<<endl<<endl;
+        cout<<player_name[i]<<"は膝が痛くて技が"<<number_of_use_skills[i]<<"種類しか出せない！"<<endl<<endl;
         sleep(1);
         return;
     }
@@ -431,7 +431,7 @@ struct vigor{
         cout<<player_name[i]<<"の膝の痛みが治った！"<<endl<<endl;
         sleep(1);
         player_form[i]&=~(1<<joint_number);
-        number_of_use_skills[i]=4;
+        number_of_use_skills[i]++;
         return;
     }
     void muscle_start(int i){ //ムキムキの発動
