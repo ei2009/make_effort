@@ -19,6 +19,7 @@ struct vigor{
     int eleci_per=3; //まひで行動できなくなる確率の分母
     int sleep_per=2; //ねむる確率の分母
     int sleep_time=2; //ねむるデフォルトのターン数
+    int joint_decrease_skills=1; //関節痛で減る技の数
     int normal_attack_number=1; //ノーマルアタックの技番号
     int fire_wave_number=2; //ファイアウェーブの技番号
     int poison_mist_number=3; //ポイズンミストの技番号
@@ -419,11 +420,11 @@ struct vigor{
         cout<<player_name[i]<<"は関節痛になった！"<<endl<<endl;
         sleep(1);
         player_form[i]|=(1<<joint_number);
-        number_of_use_skills[i]=3;
+        number_of_use_skills[i]-=joint_decrease_skills;
         return;
     }
     void joint_ing(int i){ //関節痛の進行
-        cout<<player_name[i]<<"は膝が痛くて技が3種類しか出せない！"<<endl<<endl;
+        cout<<player_name[i]<<"は膝が痛くて技が"<<number_of_use_skills[i]<<"種類しか出せない！"<<endl<<endl;
         sleep(1);
         return;
     }
@@ -431,7 +432,7 @@ struct vigor{
         cout<<player_name[i]<<"の膝の痛みが治った！"<<endl<<endl;
         sleep(1);
         player_form[i]&=~(1<<joint_number);
-        number_of_use_skills[i]=4;
+        number_of_use_skills[i]+=joint_decrease_skills;
         return;
     }
     void muscle_start(int i){ //ムキムキの発動
@@ -598,11 +599,11 @@ struct vigor{
         return;
     }
     void clean_heal(int i){ //クリーンヒール
-        cout<<player_name[i]<<"は自分を浄化した！"<<endl<<endl;
+        cout<<player_name[i]<<"は自身を浄化した！"<<endl<<endl;
         sleep(1);
         int damage=shake_number(clean_heal_power);
         if(player_hp[i]+damage>=default_hp){
-            damage=default_hp-damage;
+            damage=default_hp-player_hp[i];
         }
         cout<<player_name[i]<<"は"<<damage<<"回復した！"<<endl<<endl;
         sleep(1);
