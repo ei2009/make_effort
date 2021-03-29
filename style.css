@@ -1,5 +1,4 @@
 body {
-    color: #ffffff;
     background-image: url(grass.jpg);
     background-size: cover;
     background-attachment: fixed;
@@ -7,16 +6,19 @@ body {
 }
 
 .name {
+    color: #ffff00;
     font-size: 50px;
     text-align: center;
 }
 
 .heading {
+    color:  #ffff99;
     font-size: 40px;
     text-align: center;
 }
 
 .text {
+    color: #ffffff;
     font-size: 20px;
     text-align: center;
 }
@@ -25,4 +27,14 @@ body {
 .back {
     font-size: 30px;
     text-align: right;
+}
+
+.articles-cotainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+
+.achievements {
+    margin-top: 5%;
 }
